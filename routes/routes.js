@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 //////CONTROLLERS
 const usuarioController = require("../controller/usuarioController");
+const produtoController = require("../controller/produtoController");
+
 ////////////////Requisições HTTP Principal /////////////////////
 router.get("/", (req, res) => {
   return res.json({ message: "Sistema de Varejo" });
@@ -25,5 +27,11 @@ router.put("/usuarios/:id", usuarioController.UsuarioUpdate);
 router.delete("/usuarios/:id", usuarioController.UsuarioDelete);
 
 router.post("/login", usuarioController.UsuarioVerificaLogin);
+
+//POST - CADASTRAR
+router.post("/add_produtos", produtoController.produtoCreate);
+
+//GET - LISTAR
+router.get("/produtos/:id?", produtoController.ProdutoListar);
 
 module.exports = router;
